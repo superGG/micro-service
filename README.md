@@ -7,7 +7,7 @@
 无具体业务模块，由自行填充
 
 ## 辅助工具
-### # wagger
+#### swagger
 swagger为在线接口文档，并使用了开源UI库swagger-bootstrap-ui提高用户操作体验；同时使用了帐密登录管理。
 
 #### 请求拦截器IpInterceptor
