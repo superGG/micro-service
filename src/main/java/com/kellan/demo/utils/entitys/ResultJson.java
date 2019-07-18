@@ -44,14 +44,16 @@ public class ResultJson<T> {
 	public boolean isState() {
 		return state;
 	}
-	public void setState(boolean state) {
+	public ResultJson setState(boolean state) {
 		this.state = state;
+		return this;
 	}
 	public String getMessage() {
 		return message;
 	}
-	public void setMessage(String message) {
+	public ResultJson setMessage(String message) {
 		this.message = message;
+		return this;
 	}
 	public T getResult() {
 		if(resultMap != null && resultMap.keySet().size() != 0) {
@@ -59,31 +61,36 @@ public class ResultJson<T> {
 		}
 		return result;
 	}
-	public void setResult(T result) {
+	public ResultJson setResult(T result) {
 		this.result = result;
+		return this;
 	}
 	public String getFlag() {
 		return flag;
 	}
-	public void setFlag(String flag) {
+	public ResultJson setFlag(String flag) {
 		this.flag = flag;
+		return this;
 	}
     public int getErrorCode() {
 		return errorCode;
 	}
-	public void setErrorCode(int errorCode) {
+	public ResultJson setErrorCode(int errorCode) {
 		this.errorCode = errorCode;
+		return this;
 	}
 
-	public void setErrorCode(Integer errorCode) {
+	public ResultJson setErrorCode(Integer errorCode) {
 		this.errorCode = errorCode;
+		return this;
 	}
 
 	public Boolean getState() {
 		return state;
 	}
 
-	public void setState(Boolean state) {
+	public ResultJson setState(Boolean state) {
 		this.state = state;
+		return this;
 	}
 }

@@ -1,7 +1,9 @@
 package com.kellan.demo.controller;
 
 import com.kellan.demo.model.User;
+import com.kellan.demo.utils.entitys.ExceptionEntity;
 import com.kellan.demo.utils.entitys.ResultJson;
+import com.kellan.demo.utils.enums.ExceptionEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -28,7 +30,8 @@ public class TestController {
         log.info("进入demo接口");
         ResultJson<User> resultJson = new ResultJson<>();
         User user = new User(name,true);
-        resultJson.setResult(user);
+        resultJson.setResult(user).setMessage("请求成功");
+        if (!resultJson.getState()) throw new ExceptionEntity(ExceptionEnum.DATA_ERROR);
         return resultJson;
     }
 }

@@ -3,8 +3,6 @@ package com.kellan.demo.intercaptor;
 import com.kellan.demo.utils.entitys.ResultJson;
 import lombok.extern.slf4j.Slf4j;
 import org.omg.CORBA.portable.ApplicationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,8 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -28,11 +24,7 @@ public class SystemExceptionHandler {
 	@SuppressWarnings("unchecked")
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
-	public ResultJson resolveException(HttpServletRequest request,
-									   HttpServletResponse response, Exception ex) {
-		Map<String, Object> model = new HashMap<>();
-		model.put("ex", ex);
-		response.setContentType("application/json;charset=UTF-8");
+	public ResultJson resolveException(HttpServletRequest request, Exception ex) {
 		ResultJson resultJson = new ResultJson();
 //		AppErrorLog error = new AppErrorLog();
 		if (ex instanceof ApplicationException) {
@@ -68,7 +60,7 @@ public class SystemExceptionHandler {
 		ex.printStackTrace();
 		log.error("--------发生错误--------");
 //		StringBuilder str = new StringBuilder("参数:  ");
-		Map<String, Object> param = new HashMap<String, Object>();
+		Map<String, Object> param = new HashMap<>();
 		Set<String> keySet = request.getParameterMap().keySet();
 		if(!keySet.isEmpty()) {
 			for(String key : keySet) {
