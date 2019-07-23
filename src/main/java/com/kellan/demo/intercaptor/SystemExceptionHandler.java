@@ -1,6 +1,7 @@
 package com.kellan.demo.intercaptor;
 
 import com.kellan.demo.utils.entitys.ResultJson;
+import com.kellan.demo.utils.enums.ExceptionEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.omg.CORBA.portable.ApplicationException;
 import org.springframework.web.HttpSessionRequiredException;
@@ -43,7 +44,7 @@ public class SystemExceptionHandler {
 			log.error("错误信息:"+ex.getMessage());
 			log.error("错误编码:"+errCode);
 		}  else if (ex instanceof MissingServletRequestParameterException){
-			resultJson.setErrorCode(999);
+			resultJson.setErrorCode(ExceptionEnum.PARAMS_ERROR.getErrorCode());
 			resultJson.setState(false);
 			resultJson.setMessage("缺少参数："+((MissingServletRequestParameterException) ex).getParameterName());
 			resultJson.setFlag("");
@@ -51,9 +52,9 @@ public class SystemExceptionHandler {
 		} else if(ex instanceof HttpSessionRequiredException){
 			return resultJson;
 		} else {
-			resultJson.setErrorCode(201);
+			resultJson.setErrorCode(ExceptionEnum.SYSTEM_ERROR.getErrorCode());
 			resultJson.setState(false);
-			resultJson.setMessage("系统异常，操作失败!");
+			resultJson.setMessage(ExceptionEnum.SYSTEM_ERROR.getMessage());
 			resultJson.setFlag("");
 			resultJson.setResult("");
 		}

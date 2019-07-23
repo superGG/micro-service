@@ -7,9 +7,13 @@ package com.kellan.demo.utils.enums;
  **/
 public enum ExceptionEnum {
 
-    SYSTEM_ERROR(201, "系统异常，操作失败"),
-    DATA_ERROR(111, "数据有误"),
-    PARAMS_ERROR(999, "缺少参数");
+    DATA_ERROR(111, "数据有误")
+    ,PARAMS_ERROR(999, "缺少参数")
+
+
+
+
+    ,SYSTEM_ERROR(201, "系统异常，操作失败");
 
     private Integer errorCode;//错误码
     private String message;//错误信息

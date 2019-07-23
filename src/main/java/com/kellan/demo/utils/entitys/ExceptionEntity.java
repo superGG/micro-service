@@ -23,14 +23,34 @@ public class ExceptionEntity extends SecurityException {
 		super(message, cause);
 		this.errorMsg = message;
 	}
-	public ExceptionEntity(String message, Integer errorCode, String params) {
-		super(message, new Throwable(errorCode.toString()));
+
+	/**
+	 * 自定义错误信息
+	 * @param msg 错误信息
+	 * @param errorCode 错误编码
+	 * @param params 相关参数
+	 */
+	public ExceptionEntity(String msg, Integer errorCode, String params) {
+		super(msg, new Throwable(errorCode.toString()));
 		this.params = params;
 	}
 
+	/**
+	 *	通过统一的错误枚举类型
+	 * {@link ExceptionEnum}
+	 */
 	public ExceptionEntity(ExceptionEnum errorEnum) {
 		super(errorEnum.getMessage(), new Throwable(errorEnum.getErrorCode().toString()));
 	}
+	/**
+	 *	通过统一的错误枚举类型
+	 * @param msg 自定义拼接错误信息
+	 * {@link ExceptionEnum}
+	 */
+	public ExceptionEntity(ExceptionEnum errorEnum, String msg) {
+		super(errorEnum.getMessage() + "，" + msg, new Throwable(errorEnum.getErrorCode().toString()));
+	}
+
 
 	public ExceptionEntity(String message, Integer errorCode) {
 		super(message, new Throwable(errorCode.toString()));
