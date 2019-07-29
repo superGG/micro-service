@@ -1,0 +1,56 @@
+#测试环境的配置文件
+server:
+  port: 8082
+
+
+
+spring:
+  profiles: pre
+
+##############  MySQL  ######
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_boot_demo?useUnicode=true&characterEncoding=utf-8
+    username : root
+    password : Kellan123
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #监控统计拦截的filters
+      filters: stat
+      #连接池的最大值，同一时间可以从池分配的最多连接数量，0时无限制
+      maxActive: 20
+      #连接初始值，连接池启动时创建的连接数量的初始值
+      initialSize: 1
+      #获取连接等待超时时间
+      maxWait: 60000
+      #最小空闲值.当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请
+      minIdle: 1
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      timeBetweenEvictionRunsMillis: 60000
+      #一个连接在池中最小生存的时间
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      #是否对已备语句进行池管理（布尔值），是否对PreparedStatement进行缓存
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+
+#显示sql语句
+  jpa :
+    database: MYSQL
+    show-sql: true
+
+
+##############  swagger  ######
+
+#swagger.production=false
+#production 配置是否开启接口文档；建议在正式环境中使用; 与basic.enable属性二选一
+#swagger.basic.enable=true
+#配置接口文档是否开启帐密访问；建议在测试环境中使用，与production二选一
+swagger:
+  #production: false
+  basic:
+    enable: true
+    username: admin
+    password: 123
