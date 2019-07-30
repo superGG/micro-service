@@ -1,6 +1,7 @@
 package com.kellan.demo.utils.entitys;
 
 import jdk.nashorn.internal.objects.annotations.Getter;
+import lombok.ToString;
 
 import java.io.Serializable;
 

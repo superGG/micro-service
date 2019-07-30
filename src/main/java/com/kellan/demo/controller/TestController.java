@@ -29,8 +29,9 @@ public class TestController {
     public ResultJson<User> demo(String name) {
         log.info("进入demo接口");
         ResultJson<User> resultJson = new ResultJson<>();
-        User user = new User(name,true);
-        resultJson.setResult(user).setMessage("请求成功");
+//        User user = new User(name,true).setId(1l);
+        User user = new User().setId(1l).setName(name).setSex(true);
+        resultJson.setResult(user).setMessage("请求成功" + user.toString());
         if (!resultJson.getState()) throw new ExceptionEntity(ExceptionEnum.DATA_ERROR);
         return resultJson;
     }
