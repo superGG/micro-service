@@ -37,9 +37,9 @@ spring:
       maxOpenPreparedStatements: 20
 
 #显示sql语句
-  jpa :
-    database: MYSQL
-    show-sql: true
+logging:
+  level:
+    com.kellan.demo.dao: DEBUG
 
 
 ##############  swagger  ######

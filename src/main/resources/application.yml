@@ -4,9 +4,9 @@ spring:
   profiles:
     active: test
 
-mybatis-plus:
+mybatis:
   #实体扫描，多个package用逗号或者分号分隔
-  type-aliases-package: com.kellan.demo.model.*
+  type-aliases-package: com.kellan.demo.model
   mapper-locations: classpath*:mapper/*.xml
 
   global-config:
@@ -33,7 +33,6 @@ mybatis-plus:
       map-underscore-to-camel-case: true
       cache-enabled: false
       call-setters-on-nulls: true
-
 
 #pagehelper
 pagehelper:
