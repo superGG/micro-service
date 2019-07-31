@@ -87,6 +87,12 @@
             <version>1.18.4</version>
             <scope>provided</scope>
         </dependency>
+        <!-- 动态代理 -->
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.16.1-GA</version>
+        </dependency>
 
     </dependencies>
     <build>
