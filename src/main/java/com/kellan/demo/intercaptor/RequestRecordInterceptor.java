@@ -12,6 +12,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -30,18 +31,22 @@ import java.util.Map;
  */
 @Aspect
 @Component
-public class RequestAOP {
+public class RequestRecordInterceptor {
 	
-	private final Logger logger = LoggerFactory.getLogger(RequestAOP.class);
+	private final Logger logger = LoggerFactory.getLogger(RequestRecordInterceptor.class);
 	
 	@Autowired
 	RequestRecordMapper requestRecordMapper;
-	
+
+	@Value("${intercaptor.requestRecord}")
+	private Boolean enable; //配置是否开启
+
 	@Pointcut("execution(public * com.kellan.demo.controller..*Controller.*(..))")
 	public void pointCut(){}
 	
 	@Around("pointCut()")
 	public Object arounds(ProceedingJoinPoint point) throws Throwable {
+		if (!enable) return point.proceed(); //如果没有开启保存请求日志，直接返回结果
 		logger.info("----进入请求记录拦截器----");
 		Date startTime = new Date();
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();

@@ -1,8 +1,9 @@
 package com.kellan.demo.intercaptor;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,10 +20,11 @@ import java.util.Set;
  * @version :
  */
 @Slf4j
-public class IpInterceptor implements HandlerInterceptor {
-	
-//	private final Logger log = LoggerFactory.getLogger(IpInterceptor.class);
-	
+public class ParamInterceptor implements HandlerInterceptor {
+
+	@Value("${intercaptor.param}")
+	private Boolean enable; //是否开启
+
 	public void afterCompletion(HttpServletRequest arg0,
                                 HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {
@@ -30,12 +32,14 @@ public class IpInterceptor implements HandlerInterceptor {
 
 	public void postHandle(HttpServletRequest request, HttpServletResponse res,
                            Object arg2, ModelAndView arg3) throws Exception {
-		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
-		log.info("-----------------退出ip---拦截器---"+request.getRequestURI()+ "  退出时间："+sim.format(new Date()));
+		if (enable) {
+			SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+			log.info("-----------------退出ip---拦截器---" + request.getRequestURI() + "  退出时间：" + sim.format(new Date()));
+		}
 	}
-
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse res,
                              Object handler) throws Exception {
+		if (!enable) return true; //若拦截器未开启，直接返回
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
 		log.info("-----------------进入ip---拦截器");
 		// 获取参数

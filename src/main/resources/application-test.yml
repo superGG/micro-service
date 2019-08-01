@@ -2,7 +2,12 @@
 server:
   port: 8081
 
-
+#拦截器开启
+intercaptor:
+  #请求日志拦截器
+  requestRecord: false
+  #请求参数拦截器
+  param: true
 
 spring:
   profiles: test
@@ -54,3 +59,4 @@ swagger:
     enable: true
     username: admin
     password: 123
+
