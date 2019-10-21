@@ -2,6 +2,16 @@
 server:
   port: 8081
 
+eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:8083/eureka/
+    instance:
+      #客户端服务名称
+      instance-id: user-server8081
+      #显示客户端ip
+      prefer-ip-address: true
+
 #拦截器开启
 intercaptor:
   #请求日志拦截器

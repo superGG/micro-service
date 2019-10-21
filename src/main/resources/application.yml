@@ -3,6 +3,8 @@
 spring:
   profiles:
     active: test
+  application:
+        name: user-server
 
 mybatis:
   #实体扫描，多个package用逗号或者分号分隔
